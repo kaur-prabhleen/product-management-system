@@ -5,10 +5,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { sequelize } from './models/index.js';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Product Management System API running...' });
