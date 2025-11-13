@@ -7,12 +7,16 @@ dotenv.config();
 import { sequelize } from './models/index.js';
 import authRoutes from './routes/auth.routes.js';
 import categoryRoutes from './routes/category.routes.js';
+import productRoutes from './routes/product.routes.js';
+import path from 'path';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/products', productRoutes);
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Product Management System API running...' });
