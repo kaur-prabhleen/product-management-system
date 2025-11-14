@@ -1,0 +1,15 @@
+<div style="max-width:800px;margin:auto;padding:1rem">
+    <h3>Categories</h3>
+    <div *ngIf="error" style="color:red">{{error}}</div>
+    <div style="margin-bottom:10px">
+      <input [(ngModel)]="name" placeholder="New category name">
+      <button (click)="create()">Create</button>
+    </div>
+    <ul>
+      <li *ngFor="let c of categories" style="margin-bottom:6px">
+        <strong>{{c.name}}</strong> — <small>{{c.uuid}}</small>
+        <button (click)="remove(c)" style="margin-left:8px">Delete</button>
+      </li>
+    </ul>
+  </div>
+  

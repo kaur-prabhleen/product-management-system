@@ -1,0 +1,16 @@
+<div style="max-width:600px;margin:auto;padding:1rem">
+    <h3>Create Product</h3>
+    <div *ngIf="error" style="color:red">{{error}}</div>
+    <form (ngSubmit)="submit()">
+      <label>Name</label><br><input [(ngModel)]="name" name="name" required><br><br>
+      <label>Price</label><br><input [(ngModel)]="price" name="price" required><br><br>
+      <label>Category</label><br>
+      <select [(ngModel)]="category_uuid" name="category_uuid" required>
+        <option value="">-- choose --</option>
+        <option *ngFor="let c of categories" [value]="c.uuid">{{c.name}}</option>
+      </select><br><br>
+      <label>Image</label><br><input type="file" (change)="onFile($event)"><br><br>
+      <button type="submit">Create</button>
+    </form>
+  </div>
+  

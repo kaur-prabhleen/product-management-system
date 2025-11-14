@@ -1,0 +1,25 @@
+<div style="max-width:700px;margin:auto;padding:1rem">
+    <h3>Bulk upload products (CSV)</h3>
+  
+    <div style="margin-bottom:10px">
+      <input type="file" (change)="onFile($event)" accept=".csv" />
+      <button (click)="upload()">Upload CSV</button>
+    </div>
+  
+    <div *ngIf="jobId" style="margin-top:10px">
+      <strong>Job:</strong> {{jobId}} — <strong>Status:</strong> {{status}}
+    </div>
+  
+    <div *ngIf="logs.length" style="margin-top:12px">
+      <h4>Logs (latest)</h4>
+      <div style="background:#fafafa;padding:8px;border:1px solid #eee;max-height:200px;overflow:auto">
+        <div *ngFor="let l of logs">{{l}}</div>
+      </div>
+    </div>
+  
+    <p style="margin-top:12px;color:#666">
+      CSV format expected: <code>name,price,category_uuid,image_url(optional)</code><br>
+      (We process file in background — this UI polls job status.)
+    </p>
+  </div>
+  

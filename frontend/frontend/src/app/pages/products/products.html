@@ -1,0 +1,29 @@
+<div style="max-width:1000px;margin:auto;padding:1rem">
+    <h3>Products</h3>
+    <div style="margin-bottom:10px">
+      <input [(ngModel)]="search" placeholder="search" (keyup.enter)="load()">
+      <select [(ngModel)]="sort" (change)="load()">
+        <option value="price_asc">Price: Low → High</option>
+        <option value="price_desc">Price: High → Low</option>
+      </select>
+      <button (click)="load()">Search</button>
+      <a routerLink="/products/create" style="margin-left:10px">Create product</a>
+    </div>
+  
+    <table border="1" width="100%" cellpadding="6">
+      <tr><th>Name</th><th>Category</th><th>Price</th><th>Image</th></tr>
+      <tr *ngFor="let p of data">
+        <td>{{p.name}}</td>
+        <td>{{p.category?.name}}</td>
+        <td>{{p.price}}</td>
+        <td *ngIf="p.image_url"><img [src]="'http://localhost:5000'+p.image_url" style="height:40px" alt="img"></td>
+      </tr>
+    </table>
+  
+    <div style="margin-top:10px">
+      <button (click)="prev()">Prev</button>
+      <span>{{page}} / {{pages}}</span>
+      <button (click)="next()">Next</button>
+    </div>
+  </div>
+  

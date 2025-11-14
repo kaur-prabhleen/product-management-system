@@ -1,0 +1,12 @@
+<nav style="padding: 10px; background: #f5f5f5; border-bottom: 1px solid #ddd;">
+  <a routerLink="/products" style="margin-right: 20px;">Products</a>
+  <a routerLink="/categories" style="margin-right: 20px;">Categories</a>
+  <a routerLink="/bulk-upload" style="margin-right: 20px;">Bulk Upload</a>
+  <a routerLink="/reports" style="margin-right: 20px;">Reports</a>
+
+  <a *ngIf="!isLoggedIn()" routerLink="/login" style="margin-right: 20px;">Login</a>
+  <a *ngIf="!isLoggedIn()" routerLink="/register" style="margin-right: 20px;">Register</a>
+  <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+</nav>
+
+<router-outlet></router-outlet>

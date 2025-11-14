@@ -1,0 +1,13 @@
+<div style="max-width:420px;margin:auto;padding:1rem">
+    <h2>Register</h2>
+    <div *ngIf="error" style="color:red">{{error}}</div>
+    <div *ngIf="success" style="color:green">{{success}}</div>
+    <form (ngSubmit)="submit()">
+      <label>Email</label><br>
+      <input type="email" [(ngModel)]="email" name="email" required /><br><br>
+      <label>Password</label><br>
+      <input type="password" [(ngModel)]="password" name="password" required /><br><br>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  
