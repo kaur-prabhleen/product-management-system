@@ -1,9 +1,42 @@
-<div style="max-width:500px;margin:auto;padding:1rem">
-    <h3>Reports</h3>
-    <p>Download product reports (CSV or XLSX). Large reports are streamed to avoid timeouts.</p>
-    <div style="margin-top:10px">
-      <button (click)="downloadCSV()">Download CSV</button>
-      <button (click)="downloadXLSX()" style="margin-left:8px">Download XLSX</button>
-    </div>
-  </div>
-  
+<div class="reports-page" style="padding:16px;">
+  <h2>Reports</h2>
+
+  <!-- <div style="margin-bottom:12px;">
+    <button (click)="exportProducts('csv')">Download Products CSV</button>
+  </div> -->
+
+  <section>
+    <h3>Uploaded Jobs</h3>
+
+    <div *ngIf="loading">Loading uploads…</div>
+    <div *ngIf="error" style="color:crimson">{{ error }}</div>
+
+    <table *ngIf="!loading && uploads?.length" border="1" cellpadding="6" style="width:100%; border-collapse:collapse">
+      <thead>
+        <tr>
+          <th>Original File</th>
+          <th>Job ID</th>
+          <th>Status</th>
+          <th>Progress</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let j of uploads">
+          <td>{{ j.originalname || (j.filePath ? (j.filePath.split('/').pop()) : '-') }}</td>
+          <td style="max-width:280px; overflow:auto;">{{ j.jobId }}</td>
+          <td>{{ j.status }}</td>
+          <td>{{ j.progress ?? '-' }}</td>
+          <td>{{ j.createdAt || j.updatedAt || '-' }}</td>
+          <td>
+            <button (click)="downloadUpload(j.jobId, j.originalname)">Download CSV</button>
+            <button (click)="viewJob(j.jobId)">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && (!uploads || uploads.length===0)">No uploads yet</div>
+  </section>
+</div>

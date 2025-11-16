@@ -10,6 +10,7 @@ import categoryRoutes from './routes/category.routes.js';
 import productRoutes from './routes/product.routes.js';
 import path from 'path';
 import bulkRoutes from './routes/bulk.routes.js';
+import reportRoutes from './routes/report.routes.js';
 import { authenticate } from './middleware/auth.middleware.js';
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/bulk', bulkRoutes);
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+app.use('/api/reports', reportRoutes);
 
 
 app.get('/', (req, res) => {
