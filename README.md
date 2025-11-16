@@ -84,4 +84,4 @@ How to test
 ## Postman Collection
 A complete Postman collection is included for API testing.
  **Download here:**  
-[ProductManagement.postman_collection.json](./postman/ProductManagement.postman_collection.json)
+[Postman Collection](postman/ProductManagement.postman_collection.json)
