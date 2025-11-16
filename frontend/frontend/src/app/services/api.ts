@@ -32,12 +32,23 @@ export class ApiService {
   }
 
   bulkUpload(formData: FormData) {
-    return this.api.post('/api/products/bulk-upload', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+    return this.api.post('/api/bulk/upload', formData, { 
+      headers: {'Content-Type':'multipart/form-data'},
+      timeout: 30000 
+    }).catch(error => {
+      console.error('Bulk upload error details:', {
+        message: error.message,
+        code: error.code,
+        config: error.config,
+        response: error.response?.data
+      });
+      throw error;
     });
   }
 
-  jobStatus(id: string) { return this.api.get(`/api/jobs/${id}`); }
+  jobStatus(id: string) {
+    return this.api.get(`/api/bulk/status/${id}`);
+  }
 
   report(params: any) {
     return this.api.get('/api/products/report', {

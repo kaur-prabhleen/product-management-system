@@ -27,7 +27,6 @@ export class BulkUploadComponent {
     fd.append('file', this.file);
     try {
       const res = await this.api.bulkUpload(fd);
-      // backend should return an id or externalId or jobId
       this.jobId = res.data.jobId || res.data.externalId || res.data.id || '';
       this.status = 'queued';
       this.logs.push(`Uploaded -> jobId=${this.jobId}`);
